@@ -154,11 +154,20 @@ def GetMediaInfo(html):
 ###################################################################### menus ####################################################################################################
 
 def MainMenu():    #homescreen
+        addon.add_directory({'mode': 'AcgMenu'}, {'title':  '[COLOR red]EXTRA[/COLOR]'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
         addon.add_directory({'mode': 'Dfm2uMenu'}, {'title':  '[COLOR blue]MALAY[/COLOR]'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
 	addon.add_directory({'mode': 'EnglishMenu'}, {'title':  '[COLOR yellow]ENGLISH[/COLOR]'}, img=IconPath + 'eng.png', fanart=FanartPath + 'fanart.png')
         #addon.add_directory({'mode': 'ResolverSettings'}, {'title':  '[COLOR red]Resolver Settings[/COLOR]'}, img=IconPath + 'resolver.png', fanart=FanartPath + 'fanart.png')       
         xbmcplugin.endOfDirectory(int(sys.argv[1]))
         
+def AcgMenu():    #G
+        addon.add_directory({'mode': 'GetTitles', 'section': 'ALL', 'url': BASE_URL + '/acgtube/movie/',
+                             'startPage': '1', 'numOfPages': '1'}, {'title':  'EXTRA Movie'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
+        addon.add_directory({'mode': 'GetTitles', 'section': 'ALL', 'url': BASE_URL + '/acgtube/tvshow/',
+                             'startPage': '1', 'numOfPages': '1'}, {'title':  'EXTRA TV Show'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
+        xbmcplugin.endOfDirectory(int(sys.argv[1]))
+
+
 def Dfm2uMenu():
         addon.add_directory({'mode': 'GetTitles', 'section': 'ALL', 'url': BASE_URL + '/dfm2u/movie/',
                              'startPage': '1', 'numOfPages': '1'}, {'title':  'Movies'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
@@ -221,6 +230,8 @@ def Search(query,url):
 
 if mode == 'main':
         MainMenu()
+elif mode == 'AcgMenu':
+    AcgMenu()
 elif mode == 'EnglishMenu':
     EnglishMenu()	
 elif mode == 'Dfm2uMenu':
