@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.dfmalaystream"
+       name="Malay Video Online"
+       version="3.0"
+       provider-name="TheOne">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.t0mm0.common" version="2.1.1"/>
+    </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Malaysian Movies And International</summary>
+        <description>Malaysia Video Online made by help from original owner.Feedback at Malaysia Video Streamers Haluan Kiri FB.I exist..only to protect my people.That is the sole purpose for which I was born..And every action I take...no matter how violent..or how cruel..is for the greater good..of my people.And now......I have no people..</description>
+<disclaimer lang="en">HIDUP BIAR MENONGKAH ARUS...</disclaimer>
+    <platform>all</platform>
+	</extension>
+</addon>
