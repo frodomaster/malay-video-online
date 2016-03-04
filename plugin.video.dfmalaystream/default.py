@@ -1,4 +1,5 @@
 import xbmc, xbmcgui, xbmcaddon, xbmcplugin
+import urlresolver
 import urllib, urllib2
 import re, string, sys, os
 import commonresolvers
@@ -154,17 +155,20 @@ def GetMediaInfo(html):
 ###################################################################### menus ####################################################################################################
 
 def MainMenu():    #homescreen
-        addon.add_directory({'mode': 'AcgMenu'}, {'title':  '[COLOR red]EXTRA[/COLOR]'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
+        addon.add_directory({'mode': 'AcgMenu'}, {'title':  '[COLOR red]DRAMA/TELEMOVIE[/COLOR]'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
         addon.add_directory({'mode': 'Dfm2uMenu'}, {'title':  '[COLOR blue]MALAY[/COLOR]'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
 	addon.add_directory({'mode': 'EnglishMenu'}, {'title':  '[COLOR yellow]ENGLISH[/COLOR]'}, img=IconPath + 'eng.png', fanart=FanartPath + 'fanart.png')
+	addon.add_directory({'mode': 'HindustanMenu'}, {'title':  '[COLOR green]Hindustan[/COLOR]'}, img=IconPath + 'hindi.png', fanart=FanartPath + 'hindi.png')
         #addon.add_directory({'mode': 'ResolverSettings'}, {'title':  '[COLOR red]Resolver Settings[/COLOR]'}, img=IconPath + 'resolver.png', fanart=FanartPath + 'fanart.png')       
         xbmcplugin.endOfDirectory(int(sys.argv[1]))
         
 def AcgMenu():    #G
-        addon.add_directory({'mode': 'GetTitles', 'section': 'ALL', 'url': BASE_URL + '/acgtube/movie/',
-                             'startPage': '1', 'numOfPages': '1'}, {'title':  'EXTRA Movie'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
-        addon.add_directory({'mode': 'GetTitles', 'section': 'ALL', 'url': BASE_URL + '/acgtube/tvshow/',
-                             'startPage': '1', 'numOfPages': '1'}, {'title':  'EXTRA TV Show'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
+        addon.add_directory({'mode': 'GetEpisode', 'section': 'ALL', 'url': BASE_URL + '/acgtube/drama/',
+                             'startPage': '1', 'numOfPages': '1'}, {'title':  'EXTRA Drama'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
+        addon.add_directory({'mode': 'GetTitles', 'section': 'ALL', 'url': BASE_URL + '/acgtube/Telemovie/',
+                             'startPage': '1', 'numOfPages': '1'}, {'title':  'EXTRA Telemovie'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
+	addon.add_directory({'mode': 'GetEpisode', 'section': 'ALL', 'url': BASE_URL + '/acgtube/tvshow/',
+                             'startPage': '1', 'numOfPages': '1'}, {'title':  'TV Show'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')					 
         xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 
@@ -233,7 +237,9 @@ if mode == 'main':
 elif mode == 'AcgMenu':
     AcgMenu()
 elif mode == 'EnglishMenu':
-    EnglishMenu()	
+    EnglishMenu()
+elif mode == 'HindustanMenu':
+    HindustanMenu()	
 elif mode == 'Dfm2uMenu':
     Dfm2uMenu()
 elif mode == 'GetTitles':
