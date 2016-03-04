@@ -1,5 +1,4 @@
 import xbmc, xbmcgui, xbmcaddon, xbmcplugin
-import urlresolver
 import urllib, urllib2
 import re, string, sys, os
 import commonresolvers
