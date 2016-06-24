@@ -157,7 +157,7 @@ def MainMenu():    #homescreen
         addon.add_directory({'mode': 'AcgMenu'}, {'title':  '[COLOR red]DRAMA/TELEMOVIE[/COLOR]'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
         addon.add_directory({'mode': 'Dfm2uMenu'}, {'title':  '[COLOR blue]MALAY[/COLOR]'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
 	addon.add_directory({'mode': 'EnglishMenu'}, {'title':  '[COLOR yellow]ENGLISH[/COLOR]'}, img=IconPath + 'eng.png', fanart=FanartPath + 'fanart.png')
-	addon.add_directory({'mode': 'HindustanMenu'}, {'title':  '[COLOR green]Hindustan[/COLOR]'}, img=IconPath + 'hindi.png', fanart=FanartPath + 'hindi.png')
+	addon.add_directory({'mode': 'KacaMenu'}, {'title':  '[COLOR green]Kaca[/COLOR]'}, img=IconPath + 'hindi.png', fanart=FanartPath + 'hindi.png')
         #addon.add_directory({'mode': 'ResolverSettings'}, {'title':  '[COLOR red]Resolver Settings[/COLOR]'}, img=IconPath + 'resolver.png', fanart=FanartPath + 'fanart.png')       
         xbmcplugin.endOfDirectory(int(sys.argv[1]))
         
@@ -237,7 +237,7 @@ elif mode == 'AcgMenu':
     AcgMenu()
 elif mode == 'EnglishMenu':
     EnglishMenu()
-elif mode == 'HindustanMenu':
+elif mode == 'KacaMenu':
     HindustanMenu()	
 elif mode == 'Dfm2uMenu':
     Dfm2uMenu()
