@@ -2,6 +2,7 @@ import xbmc, xbmcgui, xbmcaddon, xbmcplugin
 import urllib, urllib2
 import re, string, sys, os
 import commonresolvers
+import urlresolver
 from t0mm0.common.addon import Addon
 from t0mm0.common.net import Net
 from htmlentitydefs import name2codepoint as n2cp
@@ -18,7 +19,7 @@ except:
 addon_id = 'plugin.video.dfmalaystream'
 plugin = xbmcaddon.Addon(id=addon_id)
 #DB = os.path.join(xbmc.translatePath("special://database"), 'dfv.db')
-BASE_URL = 'http://selangit.org/master'
+BASE_URL = 'http://selangit.org/master/sg1'
 net = Net()
 addon = Addon('plugin.video.dfmalaystream', sys.argv)
 
@@ -128,8 +129,8 @@ def GetLinks(section, url):
 def PlayVideo(url, listitem):
     try:
         print 'in PlayVideo %s' % url
-        #stream_url = urlresolver.HostedMediaFile(url).resolve()
-        stream_url = commonresolvers.get(url).result
+        stream_url = urlresolver.HostedMediaFile(url).resolve()
+        #stream_url = commonresolvers.get(url).result
         xbmc.Player().play(stream_url)
         addon.add_directory({'mode': 'help'}, {'title':  '[COLOR slategray][B]^^^ Press back ^^^[/B] [/COLOR]'},'','')
     except:
@@ -157,7 +158,8 @@ def MainMenu():    #homescreen
         addon.add_directory({'mode': 'AcgMenu'}, {'title':  '[COLOR red]DRAMA/TELEMOVIE[/COLOR]'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
         addon.add_directory({'mode': 'Dfm2uMenu'}, {'title':  '[COLOR blue]MALAY[/COLOR]'}, img=IconPath + 'acgico.png', fanart=FanartPath + 'fanart.png')
 	addon.add_directory({'mode': 'EnglishMenu'}, {'title':  '[COLOR yellow]ENGLISH[/COLOR]'}, img=IconPath + 'eng.png', fanart=FanartPath + 'fanart.png')
-	addon.add_directory({'mode': 'KacaMenu'}, {'title':  '[COLOR green]Kaca[/COLOR]'}, img=IconPath + 'hindi.png', fanart=FanartPath + 'hindi.png')
+	addon.add_directory({'mode': 'HindustanMenu'}, {'title':  '[COLOR green]HINDUSTAN[/COLOR]'}, img=IconPath + 'movie.png', fanart=FanartPath + 'movie.png')
+	addon.add_directory({'mode': 'ThailandMenu'}, {'title':  '[COLOR green]THAILAND[/COLOR]'}, img=IconPath + 'movie.png', fanart=FanartPath + 'movie.png')
         #addon.add_directory({'mode': 'ResolverSettings'}, {'title':  '[COLOR red]Resolver Settings[/COLOR]'}, img=IconPath + 'resolver.png', fanart=FanartPath + 'fanart.png')       
         xbmcplugin.endOfDirectory(int(sys.argv[1]))
         
@@ -198,6 +200,16 @@ def EnglishMenu():
 	addon.add_directory({'mode': 'GetTitles', 'section': 'ALL', 'url': BASE_URL + '/English/kid/',
                              'startPage': '1', 'numOfPages': '1'}, {'title':  'Kids Animations'}, img=IconPath + 'eng.png', fanart=FanartPath + 'fanart.png')					 
         xbmcplugin.endOfDirectory(int(sys.argv[1]))		
+
+def HindustanMenu():
+        addon.add_directory({'mode': 'GetTitles', 'section': 'ALL', 'url': BASE_URL + '/ind/',
+                             'startPage': '1', 'numOfPages': '1'}, {'title':  'Hindustan'}, img=IconPath + 'hindi.png', fanart=FanartPath + 'fanart.png')	   
+        xbmcplugin.endOfDirectory(int(sys.argv[1]))
+		
+def ThailandMenu():
+        addon.add_directory({'mode': 'GetTitles', 'section': 'ALL', 'url': BASE_URL + '/thai/',
+                             'startPage': '1', 'numOfPages': '1'}, {'title':  'Thailand'}, img=IconPath + 'eng.png', fanart=FanartPath + 'fanart.png')					 
+        xbmcplugin.endOfDirectory(int(sys.argv[1]))		
 		
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
@@ -237,8 +249,10 @@ elif mode == 'AcgMenu':
     AcgMenu()
 elif mode == 'EnglishMenu':
     EnglishMenu()
-elif mode == 'KacaMenu':
+elif mode == 'HindustanMenu':
     HindustanMenu()	
+elif mode == 'ThailandMenu':
+    ThailandMenu()		
 elif mode == 'Dfm2uMenu':
     Dfm2uMenu()
 elif mode == 'GetTitles':
